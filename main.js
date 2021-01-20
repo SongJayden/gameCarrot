@@ -1,15 +1,106 @@
+'use strict';
+
 
 const carrot_size = 80;
+const carrot_count = 5;
+const bug_count = 5;
+const game_duration_sec = 5;
+
 const field = document.querySelector('.game__field');
 const fieldRect = field.getBoundingClientRect();
+const gameBtn = document.querySelector('.game__button');
+const gameTimer = document.querySelector('.game__timer');
+const gameScore = document.querySelector('.game__score');
 
-function intiGame() {
-    // 벌레와 당근을 생성한뒤 필드에 추가
-    console.log(fieldRect);
-    addItem('carrot', 5, 'img/carrot.png');
-    addItem('bug', 5, 'img/bug.png');
+const popUp = document.querySelector('.pop-up');
+const popUpText = document.querySelector('.pop-up__message');
+const popUpRefresh = document.querySelector('.pop-up__refresh');
+
+let started = false;
+let score = 0;
+let timer = undefined;
+
+gameBtn.addEventListener('click', ( )=> {
+if(started) {
+    stopGame();
+
+} else {
+    startGame();
+}
+started = !started;
+});
+
+function startGame() {
+    intiGame();
+    showStopButton();
+    showTimerAndScore();
+    startGameTimer();
+}
+function stopGame () {
+    stopGameTimer();
+    hideGameButton();
+    showPopUpWithText('REPLAY?');
 
 }
+
+
+function showStopButton() {
+    const icon = gameBtn.querySelector('.fa-play');
+    icon.classList.add('fa-stop');
+    icon.classList.remove('fa-play');
+}
+
+function hideGameButton() {
+    gameBtn.style.visibility = 'hidden';
+}
+
+function showTimerAndScore() {
+    gameTimer.style.visibility = 'visible';
+    gameScore.style.visibility = 'visible';
+}
+
+function startGameTimer() {
+    let remainingTimeSec = game_duration_sec;
+    updateTimerText(remainingTimeSec);
+    timer = setInterval(() => {
+        if(remainingTimeSec <= 0 ) { 
+            clearInterval(timer);
+            return;
+        }
+        updateTimerText(--remainingTimeSec)
+    }, 1000);
+}
+
+function stopGameTimer() {
+    clearInterval(timer);
+
+}
+
+function updateTimerText(time) {
+    const minutes = Math.floor(time / 60);
+    const seconds = time % 60;
+    gameTimer.innerText = `${minutes}:${seconds}`;
+}
+
+
+function showPopUpWithText(text) { 
+    popUpText.innerText = text;
+    popUp.classList.remove('pop-up--hide');
+}
+
+
+
+
+function intiGame() {
+    field.innerHTML = '';
+    gameScore.innerText = carrot_count;
+    // 벌레와 당근을 생성한뒤 필드에 추가
+  
+    addItem('carrot', carrot_count, 'img/carrot.png');
+    addItem('bug', bug_count, 'img/bug.png');
+
+}
+
 
 function addItem(className, count, imgPath) {
     const x1 = 0;
@@ -34,4 +125,3 @@ function randomNumber(min, max) {
     return Math.random() * (max - min) + min;
 }
 
-intiGame();
