@@ -9,6 +9,13 @@ body {
   background-color: black;
 }
 
+.clickToStart {
+  color: black;
+  margin-top: 80px;
+  position: absolute;
+  font-size: 48px;
+  visibility: visible;
+}
 .game {
   display: flex;
   flex-direction: column;
