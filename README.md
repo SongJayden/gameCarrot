@@ -2,10 +2,9 @@
 [Check on the website](https://songjayden.github.io/gameCarrot/)
 
 ## Main Page
+<img width="819" alt="스크린샷 2021-01-20 오후 10 17 49" src="https://user-images.githubusercontent.com/8447473/105153520-693b7800-5b6d-11eb-819e-c8c3de16f1d8.png">
 
 
 ## Functions
 
-* Show cards 
 #### It will make every cards flip front.
-![showcard](https://user-images.githubusercontent.com/8447473/94410043-676f3280-01d3-11eb-8280-6fe16fb7e8be.png)
