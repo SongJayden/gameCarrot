@@ -4,7 +4,7 @@
 const carrot_size = 80;
 const carrot_count = 20;
 const bug_count = 20;
-const game_duration_sec = 20;
+const game_duration_sec = 15;
 
 const field = document.querySelector('.game__field');
 const fieldRect = field.getBoundingClientRect();
